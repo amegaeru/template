@@ -1,7 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Amazon EKS Sample VPC - Private and Public subnets'
-# aws cloudformation create-stack --region ap-northeast-1 --stack-name my-vpc-stack --template-url https://raw.githubsusercontent.com/amegaeru/template/main/02.CloudFormation/01-1.create_vpc_natgw_igw.yaml
 Parameters:
 
   VpcBlock:
