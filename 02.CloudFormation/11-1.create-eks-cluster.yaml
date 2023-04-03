@@ -337,6 +337,24 @@ Resources:
           - !GetAtt PrivateSubnet01.SubnetId
           - !GetAtt PrivateSubnet02.SubnetId
 
+  MyNodeGroup:
+    Type: AWS::EKS::Nodegroup
+    Properties:
+      ClusterName: my-cluster
+      NodeRole: !Ref NodeIAMRole
+      Subnets:
+        - !GetAtt PrivateSubnet01.SubnetId
+        - !GetAtt PrivateSubnet02.SubnetId
+      InstanceTypes:
+        - t3.small
+        - t3.medium
+      ScalingConfig:
+        DesiredSize: 2
+        MinSize: 1
+        MaxSize: 3
+      Labels:
+        foo: bar
+
 Outputs:
   SubnetIds:
     Description: Subnets IDs in the VPC
