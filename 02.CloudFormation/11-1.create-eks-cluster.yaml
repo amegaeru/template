@@ -341,19 +341,20 @@ Resources:
     Type: AWS::EKS::Nodegroup
     Properties:
       ClusterName: my-cluster
-      NodeRole: !Ref NodeIAMRole
+      NodegroupName: my-nodegroup
+      # NodeRole: myAmazonEKSNodeR
+      NodeRole: !GetAtt NodeIAMRole.Arn
       Subnets:
+        - !GetAtt PublicSubnet01.SubnetId
+        - !GetAtt PublicSubnet02.SubnetId
         - !GetAtt PrivateSubnet01.SubnetId
         - !GetAtt PrivateSubnet02.SubnetId
       InstanceTypes:
-        - t3.small
         - t3.medium
       ScalingConfig:
         DesiredSize: 2
         MinSize: 1
         MaxSize: 3
-      Labels:
-        foo: bar
 
 Outputs:
   SubnetIds:

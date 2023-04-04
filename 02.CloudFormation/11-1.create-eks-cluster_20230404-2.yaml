@@ -1,0 +1,26 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Amazon EKS Sample VPC - Private and Public subnets'
+Resources:
+  MyNodeGroup:
+    Type: AWS::EKS::Nodegroup
+    Properties:
+      ClusterName: my-cluster
+      NodegroupName: my-nodegroup
+      # NodeRole: myAmazonEKSNodeR
+      NodeRole: arn:aws:iam::790301748424:role/myAmazonEKSNodeRole
+      Subnets:
+        - subnet-006e42aa66a5cdac6
+        - subnet-0918737aff6fb95b3
+        - subnet-06405a7582761c8a3
+        - subnet-07dc3fd5278bc4057
+        # - !GetAtt PublicSubnet01.SubnetId
+        # - !GetAtt PublicSubnet02.SubnetId
+        # - !GetAtt PrivateSubnet01.SubnetId
+        # - !GetAtt PrivateSubnet02.SubnetId
+      InstanceTypes:
+        - t3.medium
+      ScalingConfig:
+        DesiredSize: 2
+        MinSize: 1
+        MaxSize: 3
